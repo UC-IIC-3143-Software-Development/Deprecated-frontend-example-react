@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { UserService } from './service/UserService';
+import { ApiUserRepository } from './infrastructure/ApiUserRepository';
+import { User } from './domain/User';
+
+const apiUrl = 'https://jsonplaceholder.typicode.com';
+const userRepository = new ApiUserRepository(apiUrl);
+const userService = new UserService(userRepository);
 
 function App() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const fetchedUser = await userService.getUser(1);
+      setUser(fetchedUser);
+    };
+    fetchUser();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div>
+        {user ? (
+            <>
+              <h1>{user.name}</h1>
+              <p>{user.email}</p>
+            </>
+        ) : (
+            <p>Loading...</p>
+        )}
+      </div>
   );
 }
 
