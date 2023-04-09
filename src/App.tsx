@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react';
 import { UserService } from './service/UserService';
 import { ApiUserRepository } from './infrastructure/ApiUserRepository';
 import { User } from './domain/User';
-import { UserRepositoryAdapter } from './adapter/UserRepositoryAdapter';
 
 const apiUrl = 'https://jsonplaceholder.typicode.com';
-const apiUserRepository = new ApiUserRepository(apiUrl);
-const userRepositoryAdapter = new UserRepositoryAdapter(apiUserRepository);
-const userService = new UserService(userRepositoryAdapter);
+const userRepository = new ApiUserRepository(apiUrl);
+const userService = new UserService(userRepository);
 
 function App() {
   const [user, setUser] = useState<User | null>(null);

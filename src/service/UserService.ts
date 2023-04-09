@@ -1,11 +1,14 @@
-import { User } from '../domain/User';
 import { UserRepository } from '../repository/UserRepository';
+import { GetUserQuery } from './query/GetUserQuery';
 
 export class UserService {
-  constructor(private userRepository: UserRepository) {}
+  private getUserQuery: GetUserQuery;
 
-  async getUser(id: number): Promise<User> {
-    const userDto = await this.userRepository.getUser(id);
-    return new User(userDto.id, userDto.name, userDto.email);
+  constructor(userRepository: UserRepository) {
+    this.getUserQuery = new GetUserQuery(userRepository);
+  }
+
+  async getUser(id: number) {
+    return this.getUserQuery.execute(id);
   }
 }

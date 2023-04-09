@@ -1,12 +1,20 @@
-import { UserService } from './UserService';
 import { User } from '../domain/User';
-import { MockUserRepository } from '../repository/builder/MockUserRepository';
+import { MockUserRepository } from '../infrastructure/builder/MockUserRepository';
+import { GetUserQuery } from './query/GetUserQuery';
+import { UserRepository } from '../repository/UserRepository';
+import { UserQuery } from './query/UserQuery';
 
-describe('UserService', () => {
+describe('GetUserQuery', () => {
+  let userRepository: UserRepository;
+  let getUserQuery: UserQuery;
+
+  beforeEach(() => {
+    userRepository = new MockUserRepository();
+    getUserQuery = new GetUserQuery(userRepository);
+  });
+
   it('should fetch a user and return a User instance', async () => {
-    const userRepository = new MockUserRepository();
-    const userService = new UserService(userRepository);
-    const user = await userService.getUser(1);
+    const user = await getUserQuery.execute(1);
 
     expect(user).toBeInstanceOf(User);
     expect(user.id).toEqual(1);

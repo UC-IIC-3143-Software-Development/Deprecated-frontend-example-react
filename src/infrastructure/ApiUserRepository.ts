@@ -1,9 +1,17 @@
 import { UserRepository } from '../repository/UserRepository';
 
-export class ApiUserRepository implements UserRepository {
-  constructor(private apiUrl: string) {}
+export type ApiUser = {
+  id: number;
+  name: string;
+  email: string;
+};
 
-  async getUser(id: number): Promise<any> {
+export class ApiUserRepository extends UserRepository {
+  constructor(private apiUrl: string) {
+    super();
+  }
+
+  async getUser(id: number): Promise<ApiUser> {
     const response = await fetch(`${this.apiUrl}/users/${id}`);
     return response.json();
   }

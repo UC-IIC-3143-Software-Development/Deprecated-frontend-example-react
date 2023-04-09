@@ -1,5 +1,5 @@
-export class UserRepository {
-  async getUser(id: any) {
-    throw new Error('Not implemented');
-  }
+import { ApiUser } from '../infrastructure/ApiUserRepository';
+
+export abstract class UserRepository {
+  abstract getUser(id: number): Promise<ApiUser>;
 }
