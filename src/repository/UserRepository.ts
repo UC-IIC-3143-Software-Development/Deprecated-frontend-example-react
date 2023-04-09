@@ -1,3 +1,5 @@
-export interface UserRepository {
-  getUser(id: number): Promise<any>;
+export class UserRepository {
+  async getUser(id: any) {
+    throw new Error('Not implemented');
+  }
 }

@@ -1,17 +1,6 @@
 import { UserService } from './UserService';
-import { UserRepository } from '../repository/UserRepository';
 import { User } from '../domain/User';
-
-class MockUserRepository implements UserRepository {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async getUser(id: number): Promise<any> {
-    return {
-      id: 1,
-      name: 'John Doe',
-      email: 'john.doe@example.com',
-    };
-  }
-}
+import { MockUserRepository } from '../repository/builder/MockUserRepository';
 
 describe('UserService', () => {
   it('should fetch a user and return a User instance', async () => {
