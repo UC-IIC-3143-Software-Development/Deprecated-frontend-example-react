@@ -19,16 +19,16 @@ function App() {
   }, []);
 
   return (
-      <div>
-        {user ? (
-            <>
-              <h1>{user.name}</h1>
-              <p>{user.email}</p>
-            </>
-        ) : (
-            <p>Loading...</p>
-        )}
-      </div>
+    <div>
+      {user ? (
+        <>
+          <h1>{user.name}</h1>
+          <p>{user.email}</p>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
   );
 }
 
