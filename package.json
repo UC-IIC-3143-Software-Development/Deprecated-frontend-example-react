@@ -29,7 +29,8 @@
     "prettier-watch": "run-script-os",
     "prettier-watch:win32": "onchange \"src/**/*.ts\" -- prettier --write {{changed}}",
     "prettier-watch:darwin:linux": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
-    "prettier-watch:default": "onchange 'src/**/*.ts' -- prettier --write {{changed}}"
+    "prettier-watch:default": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^12.9.0",
     "dependency-cruiser": "^12.10.0",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.6.0",
