@@ -30,7 +30,9 @@
     "prettier-watch:win32": "onchange \"src/**/*.ts\" -- prettier --write {{changed}}",
     "prettier-watch:darwin:linux": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
     "prettier-watch:default": "onchange 'src/**/*.ts' -- prettier --write {{changed}}",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "coverage": "npm test -- --coverage --collectCoverageFrom=\"./src/**\"",
+    "arch": "npx depcruise src --include-only \"^src\" --config --output-type dot | dot -T svg > architecture.svg"
   },
   "eslintConfig": {
     "extends": [
