@@ -3,8 +3,7 @@ import { UserRepository } from '../repository/UserRepository';
 import { User } from '../domain/User';
 
 class MockUserRepository implements UserRepository {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async(getUserid: number): Promise<any> {
+  async getUser(id: number): Promise<any> {
     return {
       id: 1,
       name: 'John Doe',
